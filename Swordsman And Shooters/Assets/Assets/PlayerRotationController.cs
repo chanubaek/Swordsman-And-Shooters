@@ -137,7 +137,7 @@ public class PlayerRotationController : MonoBehaviour
 
             if (Input.GetMouseButton(1))
             {
-                distanceLength += 0.04175f * (1.46f + Time.deltaTime) * (1.46f + Time.deltaTime) * (1.46f + Time.deltaTime);
+                distanceLength += 108f * Time.deltaTime;
 
                 if (startJoint1Angle.y - distanceLength * deltaJoint1YPos>-0.05f)
                 {
