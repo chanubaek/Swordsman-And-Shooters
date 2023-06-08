@@ -69,7 +69,7 @@ public class PlayerRotationController : MonoBehaviour
         {
             positionOfMouse = hit.point;
             playerToMouseCandidate = hit.point - transform.position;
-            if ((playerToMouseCandidate.x* playerToMouseCandidate.x + playerToMouseCandidate.z* playerToMouseCandidate.z) > 20f)
+            if ((playerToMouseCandidate.x* playerToMouseCandidate.x + playerToMouseCandidate.z* playerToMouseCandidate.z) > 5f)
             {
                 playerToMouse = hit.point - transform.position;
                 startBodyAngle = playerToMouse;
@@ -94,12 +94,12 @@ public class PlayerRotationController : MonoBehaviour
         currentWaistAngle = startWaistAngle;
         currentJoint2Angle = startJoint2Angle;
 
-        deltaBodyAngle = 0.2f;
+        deltaBodyAngle = 0.23f;
         deltaJoint1Angle = 0.2f;
-        deltaJoint1YPos = 0.02f;
+        deltaJoint1YPos = 0.4f;
         deltaWaistAngle = 0.17f;
         deltaJoint2Angle = 0.2f;
-        deltaJoint2YPos = 0.02f;
+        deltaJoint2YPos = 0.4f;
     }
 
     // Update is called once per frame
@@ -107,6 +107,7 @@ public class PlayerRotationController : MonoBehaviour
     {
         if (!clickStarted)
         {
+            swing = false;
             AdjustPlayerToMouse();
             playerWaist.transform.rotation = Quaternion.LookRotation((-1f)*playerToMouse, (-1f)*playerToMouse);
             playerJoint1.transform.rotation = Quaternion.LookRotation((-1f)*playerToMouse, (-1f)*playerToMouse);
@@ -114,6 +115,7 @@ public class PlayerRotationController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
+            swing = false;
             clickStarted = true;
             playerWaist.transform.rotation = Quaternion.LookRotation((-1f) * startWaistAngle, (-1f) * startWaistAngle);
             playerJoint1.transform.rotation = Quaternion.LookRotation((-1f) * startJoint1Angle, (-1f) * startJoint1Angle);
@@ -122,25 +124,26 @@ public class PlayerRotationController : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit hit2;
-            //Vector3 distance;
-
-            //if (Physics.Raycast(ray2, out hit2, Mathf.Infinity))
-            //{
-            //    distance = positionOfMouse - hit2.point;
-            //    distance.y = 0;
-            //    distanceLength = distance.x * distance.x + distance.y * distance.y + distance.z * distance.z;
-            //    distanceLength *= 0.03f;
-
             swing = true;
 
             if (Input.GetMouseButton(1))
             {
+                //if(distanceLength>0.5f)
+                //{
+                //    deltaJoint1YPos = 0.02f;
+                //    deltaJoint2YPos = 0.02f;
+                //}
+
                 distanceLength += 108f * Time.deltaTime;
 
-                if (startJoint1Angle.y - distanceLength * deltaJoint1YPos>-0.05f)
+                if ((startJoint1Angle.y - distanceLength * deltaJoint1YPos>-0.15f))
                 {
+                    if(distanceLength > 0.5f)
+                    {
+                        deltaJoint1YPos = 0.02f;
+                        deltaJoint2YPos = 0.02f;
+                    }
+
                     currentBodyAngle =
                         new Vector3
                         (
@@ -182,6 +185,9 @@ public class PlayerRotationController : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            deltaJoint1YPos = 0.4f;
+            deltaJoint2YPos = 0.4f;
+            swing = false;
             AdjustPlayerToMouse();
             playerWaist.transform.rotation = Quaternion.LookRotation((-1f)*playerToMouse, (-1f)*playerToMouse);
             playerJoint1.transform.rotation = Quaternion.LookRotation((-1f)*playerToMouse, (-1f)*playerToMouse);
@@ -189,6 +195,7 @@ public class PlayerRotationController : MonoBehaviour
         }
         else
         {
+            swing = false;
             AdjustPlayerToMouse();
         }
     }
