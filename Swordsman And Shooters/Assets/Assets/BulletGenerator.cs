@@ -31,22 +31,22 @@ public class BulletGenerator : MonoBehaviour
             GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
 
             // BulletController 스크립트를 찾아서 Shoot() 함수 호출(총알 발사)
-            bullet.GetComponent<BulletController>().Shoot(enemyGun.GetComponent<GunController>().dir.normalized * (1500f));
+            bullet.GetComponent<BulletController>().Shoot(enemyGun.GetComponent<GunController>().dir.normalized * (650f));
 
             Destroy(bullet, 2f);
         }
         if(start)
         {
             timePassed += Time.deltaTime;
-            if (timePassed > 0.9f)
+            if (timePassed > 1.3f)
             {
                 // 프리팹을 이용하여 오브젝트 생성
                 GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
 
                 // BulletController 스크립트를 찾아서 Shoot() 함수 호출(총알 발사)
-                bullet.GetComponent<BulletController>().Shoot(enemyGun.GetComponent<GunController>().dir.normalized * (1500f));
+                bullet.GetComponent<BulletController>().Shoot(enemyGun.GetComponent<GunController>().dir.normalized * (700f));
                 timePassed = 0f;
-                Destroy(bullet, 3f);
+                Destroy(bullet, 2f);
             }
         }
     }

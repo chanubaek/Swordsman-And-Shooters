@@ -10,6 +10,8 @@ public class EnemyHealthController : MonoBehaviour
     int enemyHealthPoint = 400;
     public bool enemyDead=false;
 
+    float time;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +22,20 @@ public class EnemyHealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnCollisionEnter(Collision collision)
     {
         if ((playerBody.GetComponent<PlayerRotationController>().swing) && collision.collider.tag == "SWORD")
         {
-            enemyHealthPoint -= 200;
+            playerBody.GetComponent<PlayerRotationController>().swing = false;
+            enemyHealthPoint -= 140;
             RectTransform rectTran = enemyHealth.GetComponent<RectTransform>();
             rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, enemyHealthPoint);
             if (enemyHealthPoint <= 0)
             {
                 enemyDead = true;
             }
+
         }
     }
 }

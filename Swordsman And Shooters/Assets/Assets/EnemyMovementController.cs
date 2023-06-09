@@ -18,7 +18,7 @@ public class EnemyMovementController : MonoBehaviour
     void Start()
     {
 
-        speed = 2.8f;
+        speed = 8.0f;
         moveRate = 0.5f;
 
         timeAfterMove = 0f;
@@ -34,15 +34,14 @@ public class EnemyMovementController : MonoBehaviour
         {
             if (timeAfterMove > moveRate)
             {
-                timeAfterMove = 0f;
                 direction = new Vector3(Random.Range(-1.0f, 1.0f), 0f, Random.Range(-1.0f, 1.0f));
                 direction = direction.normalized * speed; // direction : 새롭게 이동할 벡터
                 direction2 = this.transform.position;
                 direction2 += direction;                // direction2 : 이동 후 예상 좌표
 
-                if ((this.transform.position.x < 17.0f) && (this.transform.position.x > -17.0f) && (this.transform.position.z < 17.0f) && (this.transform.position.z > -17.0f)) // 현재 위치가 바닥을 벗어나지 않았을 때
+                if ((this.transform.position.x < 8.0f) && (this.transform.position.x > -8.0f) && (this.transform.position.z < 8.0f) && (this.transform.position.z > -8.0f)) // 현재 위치가 바닥을 벗어나지 않았을 때
                 {
-                    if ((direction2.x > 17.0f) || (direction2.x < -17.0f) || (direction2.z > 17.0f) || (direction2.z < -17.0f))   // 새로 갈 곳의 예상 좌표가 바닥을 벗어나는 경우, 중앙으로 향함.
+                    if ((direction2.x > 8.0f) || (direction2.x < -8.0f) || (direction2.z > 8.0f) || (direction2.z < -8.0f))   // 새로 갈 곳의 예상 좌표가 바닥을 벗어나는 경우, 중앙으로 향함.
                     {
                         direction = this.transform.position * (-1f);
                         direction = direction.normalized * speed;
@@ -58,10 +57,14 @@ public class EnemyMovementController : MonoBehaviour
                     direction = direction.normalized * speed;
 
                 }
-                this.transform.Translate(direction);
+                timeAfterMove = 0f;
 
             }
-            timeAfterMove += Time.deltaTime;    // 이동 후 지나간 시간에 Time.deltaTime 더하기
+            else
+            {
+                this.transform.Translate((direction * Time.deltaTime));
+                timeAfterMove += Time.deltaTime;    // 이동 후 지나간 시간에 Time.deltaTime 더하기
+            }
         }
 
     }

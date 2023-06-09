@@ -28,24 +28,36 @@ public class PlayerHealthController : MonoBehaviour
     {
         if (collision.collider.tag == "BULLET")
         {
-            switch (playerHealth)
+            if(!collision.collider.GetComponent<BulletController>().hit)
             {
-                case 3:
-                    Destroy(playerLife3);
-                    break;
-                case 2:
-                    Destroy(playerLife2);
-                    break;
-                case 1:
-                    Destroy(playerLife1);
-                    break;
-            }
-            playerHealth--;
+                switch (playerHealth)
+                {
+                    case 3:
+                        Destroy(playerLife3);
+                        playerHealth--;
+                        collision.collider.GetComponent<BulletController>().hit = true;
+                        Destroy(collision.collider);
+                        break;
+                    case 2:
+                        Destroy(playerLife2);
+                        playerHealth--;
+                        collision.collider.GetComponent<BulletController>().hit = true;
+                        Destroy(collision.collider);
+                        break;
+                    case 1:
+                        Destroy(playerLife1);
+                        playerHealth--;
+                        collision.collider.GetComponent<BulletController>().hit = true;
+                        Destroy(collision.collider);
+                        break;
+                }
 
-            if(playerHealth<=0)
-            {
-                playerDead = true;
+                if (playerHealth <= 0)
+                {
+                    playerDead = true;
+                }
             }
+
         }
     }
 }
