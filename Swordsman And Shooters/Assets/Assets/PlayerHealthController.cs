@@ -26,6 +26,7 @@ public class PlayerHealthController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         if (collision.collider.tag == "BULLET")
         {
             if(!collision.collider.GetComponent<BulletController>().hit)
@@ -59,5 +60,6 @@ public class PlayerHealthController : MonoBehaviour
             }
 
         }
+        */
     }
 }
