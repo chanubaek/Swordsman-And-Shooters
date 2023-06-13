@@ -21,10 +21,15 @@ public class SpiderFrontCannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dir.x = playerBody.transform.position.x - this.transform.position.x;
-        dir.z = playerBody.transform.position.z - this.transform.position.z;
+        if(Mathf.Sqrt((playerBody.transform.position.x - this.transform.position.x)*(playerBody.transform.position.x - this.transform.position.x) +
+            (playerBody.transform.position.z - this.transform.position.z)* (playerBody.transform.position.z - this.transform.position.z))>5f)
+        {
+            dir.x = playerBody.transform.position.x - this.transform.position.x;
+            dir.z = playerBody.transform.position.z - this.transform.position.z;
 
-        yPos = playerBody.transform.position.y - this.transform.position.y;
+            yPos = playerBody.transform.position.y - this.transform.position.y;
+        }
+
 
     }
 }
