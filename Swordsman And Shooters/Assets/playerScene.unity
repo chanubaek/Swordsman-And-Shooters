@@ -1161,6 +1161,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1124129551488400086, guid: 0d214189a6b08d2438773e8c03fb12e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32db39bfc38054f47a8710c65f5c474f, type: 2}
     - target: {fileID: 1124129551687133304, guid: 0d214189a6b08d2438773e8c03fb12e9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1209,6 +1213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderPrefab Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2322642798810910525, guid: 0d214189a6b08d2438773e8c03fb12e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4190bd2c1ca0e9844a0cc93a84d083c1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d214189a6b08d2438773e8c03fb12e9, type: 3}
 --- !u!1 &1161341001
