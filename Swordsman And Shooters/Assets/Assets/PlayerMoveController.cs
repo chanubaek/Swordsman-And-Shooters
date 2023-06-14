@@ -76,25 +76,30 @@ public class PlayerMoveController : MonoBehaviour
             keyNotInputted = false;
         }
 
-        if (
-            (Input.GetKeyUp(KeyCode.A))|| (Input.GetKeyUp(KeyCode.S))|| (Input.GetKeyUp(KeyCode.D))|| (Input.GetKeyUp(KeyCode.W))
-            || (Input.GetKeyUp(KeyCode.LeftArrow)) || (Input.GetKeyUp(KeyCode.DownArrow)) || (Input.GetKeyUp(KeyCode.RightArrow)) || (Input.GetKeyUp(KeyCode.UpArrow))
-            || (Input.GetKeyUp(KeyCode.LeftShift))
-            )   // 키보드 뗐을 때, 뗀 시점의 위치로 player의 위치를 저장.
-        {
-            time = 0f;
-            originalPosition = transform.position;
-            keyNotInputted = true;
+        //if (
+        //    (Input.GetKeyUp(KeyCode.A))|| (Input.GetKeyUp(KeyCode.S))|| (Input.GetKeyUp(KeyCode.D))|| (Input.GetKeyUp(KeyCode.W))
+        //    || (Input.GetKeyUp(KeyCode.LeftArrow)) || (Input.GetKeyUp(KeyCode.DownArrow)) || (Input.GetKeyUp(KeyCode.RightArrow)) || (Input.GetKeyUp(KeyCode.UpArrow))
+        //    || (Input.GetKeyUp(KeyCode.LeftShift))
+        //    )   // 키보드 뗐을 때, 뗀 시점의 위치로 player의 위치를 저장.
+        //{
+        //    time = 0f;
+        //    originalPosition = playerBody.transform.position;
+        //    keyNotInputted = true;
 
-        }
+        //}
 
-        if (keyNotInputted)  // 키보드 입력 안 했을 때, 키보드를 뗀 순간 저장한 player의 위치 그대로 player를 고정.
-        {
-            transform.position = originalPosition;
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    playerBody.GetComponent<PlayerRotationController>().jump();
+        //}
+
+        //if (keyNotInputted)  // 키보드 입력 안 했을 때, 키보드를 뗀 순간 저장한 player의 위치 그대로 player를 고정.
+        //{
+        //    playerBody.transform.position = originalPosition;
+        //}
         if(background.GetComponent<FallController>().playerFall)
         {
-            transform.position += new Vector3(0f, -1f, 0f);
+            playerBody.transform.position += new Vector3(0f, -1f, 0f);
             playerBody.GetComponent<PlayerHealthController>().playerDead = true;
         }
     }

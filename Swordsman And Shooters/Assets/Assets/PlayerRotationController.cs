@@ -55,7 +55,7 @@ public class PlayerRotationController : MonoBehaviour
     float distanceLength = 0f;
 
     GameObject playerBody;
-
+    public Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +64,7 @@ public class PlayerRotationController : MonoBehaviour
         playerWaist = GameObject.Find("PlayerWaist");
         playerJoint2 = GameObject.Find("PlayerJoint2");
         playerBody = GameObject.Find("PlayerBody");
+        rb = this.GetComponent<Rigidbody>();
     }
     void AdjustPlayerToMouse()
     {
@@ -107,9 +108,18 @@ public class PlayerRotationController : MonoBehaviour
         deltaJoint2YPos = 0.02f;
     }
 
+    //public void jump()
+    //{
+    //    rb.AddForce(0f, 100f, 0f);
+    //}
+
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 250f, ForceMode.Impulse);
+        }
         if (!clickStarted)
         {
             swing = false;

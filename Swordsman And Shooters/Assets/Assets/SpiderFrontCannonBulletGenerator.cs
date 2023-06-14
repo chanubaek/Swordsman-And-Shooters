@@ -48,9 +48,10 @@ public class SpiderFrontCannonBulletGenerator : MonoBehaviour
                 GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
 
                 // BulletController 스크립트를 찾아서 Shoot() 함수 호출(총알 발사)
-                bullet.GetComponent<BulletController>().Shoot(((spiderFrontCannonController.GetComponent<SpiderFrontCannonController>().dir +
-                    new Vector3(0f, spiderFrontCannonController.GetComponent<SpiderFrontCannonController>().yPos
-                    , 0f)).normalized + 0.2f * Vector3.down) * (1000f));
+                //bullet.GetComponent<BulletController>().Shoot(((spiderFrontCannonController.GetComponent<SpiderFrontCannonController>().dir +
+                //    new Vector3(0f, spiderFrontCannonController.GetComponent<SpiderFrontCannonController>().yPos
+                //    , 0f)).normalized + 0.2f * Vector3.down) * (2000f));
+                bullet.GetComponent<BulletController>().Shoot(spiderFrontCannonController.GetComponent<SpiderFrontCannonController>().dir.normalized  * 2000f);
                 timePassed = 0f;
                 Destroy(bullet, 5f);
             }
